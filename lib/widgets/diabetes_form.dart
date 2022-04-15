@@ -2,9 +2,16 @@
 
 import 'package:flutter/material.dart';
 
-class Diabetes extends StatelessWidget {
+class Diabetes extends StatefulWidget {
   const Diabetes({Key? key}) : super(key: key);
 
+  @override
+  State<Diabetes> createState() => _DiabetesState();
+}
+
+class _DiabetesState extends State<Diabetes> {
+   String? chooseValue;
+  List listItem = ["Male", "Female"];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -26,11 +33,10 @@ class Diabetes extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
               // ignore: sized_box_for_whitespace
-              Container(
-                height: 250,
-                width:MediaQuery.of(context).size.width,
-                child: Image.asset("assets/bb.jpg"),
-              ),
+              
+          
+                 Image.asset("assets/ff.jpg"),
+            
               Card(
                 elevation: 6,
                 child: TextFormField(
@@ -42,8 +48,28 @@ class Diabetes extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              const Card(
-                  elevation: 6, child: const Text("DropDown for Gender")),
+               Card(
+                  elevation: 6, child:  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Gender"),
+                       DropdownButton(
+                              hint: const Text("Select"),
+                              value: chooseValue,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  chooseValue = (newValue).toString();
+                                });
+                              },
+                              items: listItem.map((valueItem) {
+                                return DropdownMenuItem(
+                                  value: valueItem,
+                                  child: Text(valueItem),
+                                );
+                              }).toList())
+
+                    ],
+                  )),
               const SizedBox(
                 height: 5,
               ),
@@ -51,7 +77,7 @@ class Diabetes extends StatelessWidget {
                 elevation: 6,
                 child: TextFormField(
                   decoration: const InputDecoration(
-                      label: Text("HEIGHT (in cm)"),
+                      label: Text("Gulocose"),
                       border: const OutlineInputBorder()),
                 ),
               ),
@@ -62,7 +88,7 @@ class Diabetes extends StatelessWidget {
                 elevation: 6,
                 child: TextFormField(
                   decoration: const InputDecoration(
-                      label: Text("WEIGHT (in kg)"),
+                      label: Text("BMI"),
                       border: OutlineInputBorder()),
                 ),
               ),
@@ -73,7 +99,7 @@ class Diabetes extends StatelessWidget {
                 elevation: 6,
                 child: TextFormField(
                   decoration: const InputDecoration(
-                      label: const Text("Systolic Blood pressure"),
+                      label: const Text("2hrs Serum Insulin"),
                       border: const OutlineInputBorder()),
                 ),
               ),

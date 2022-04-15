@@ -10,7 +10,15 @@ class HeartFrom extends StatefulWidget {
 }
 
 class _HeartFromState extends State<HeartFrom> {
-  String dropDownValue = "SELECT";
+  String? chooseValue;
+  String?  chooseVaB;
+  String? chooseVaC;
+  String? chooseVaD;
+  String? chooseVaE;
+  String? chooseVaF;
+  List listItem = ["Male", "Female"];
+  List listItemA = ["Low", "Normal","High"];
+  List listItemB = ["Yes", "No"];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -19,7 +27,7 @@ class _HeartFromState extends State<HeartFrom> {
         appBar: AppBar(
           // ignore: prefer_const_constructors
           title: Text("Heart pridication Form"),
-           leading: IconButton(
+          leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
@@ -28,112 +36,198 @@ class _HeartFromState extends State<HeartFrom> {
         ),
         body: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-
-            Container(
-              height: 250,
-              width: MediaQuery.of(context).size.width,
-             child: Image.asset("assets/aa.jpg", fit:BoxFit.fill),
-            ),
-            Card(
-              elevation: 6,
-              child: TextFormField(
-                decoration: InputDecoration(
-                    label: Text("Age in Years"), border: OutlineInputBorder()),
-              ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Card(elevation: 6, child: Text("DropDown for Gender")),
-            SizedBox(
-              height: 5,
-            ),
-            Card(
-              elevation: 6,
-              child: TextFormField(
-                decoration: InputDecoration(
-                    label: Text("HEIGHT (in cm)"), border: OutlineInputBorder()),
-              ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Card(
-              elevation: 6,
-              child: TextFormField(
-                decoration: InputDecoration(
-                    label: Text("WEIGHT (in kg)"),
-                    border: OutlineInputBorder()),
-              ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Card(
-              elevation: 6,
-              child: Text("DrowpDown for Clestrol")),
-            SizedBox(
-              height: 5,
-            ),
-            Card(
-              elevation: 6,
-              child: Text("DropDown For Gulogose")),
-            SizedBox(
-              height: 5,
-            ),
-            Card(
-              elevation: 6,
-              child: TextFormField(
-                decoration: InputDecoration(
-                    label: Text("Systolic Blood pressure"),
-                    border: OutlineInputBorder()),
-              ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Card(
-              elevation: 6,
-              child: TextFormField(
-                decoration: InputDecoration(
-                    label: Text("Diastolic Blood Pressure"),
-                    border: OutlineInputBorder()),
-              ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Card(
-              elevation: 6,
-              child: Text("Dropdown for Smoke")),
-            SizedBox(
-              height: 10,
-            ),
-            Card(
-              elevation: 6,
-              child: Text("DropDown for Alcholo")),
-              ElevatedButton(onPressed: (){},
-              child: Text("Submitted"),
-              )
-            // DropdownButton(
-            //     value: dropDownValue,
-            //     icon: const Icon(Icons.arrow_drop_down_sharp),
-            //     onChanged: (String? newValue) {
-            //       setState(() {
-            //         dropDownValue = newValue!;
-            //       });
-            //     },
-            //     items: <String>['One', 'Two', 'Free', 'Four']
-            //         .map<DropdownMenuItem<String>>((String value) {
-            //       return DropdownMenuItem<String>(
-            //         value: value,
-            //         child: Text(value),
-            //       );
-            //     }).toList())
-          ]),
+               crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset("assets/dd.jpg", fit: BoxFit.fill),
+                
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Card(
+                      elevation: 6,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            label: Text("Age in Years"),
+                            border: OutlineInputBorder()),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Card(
+                        elevation: 6,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Gender"),
+                            DropdownButton(
+                                hint: Text("Select"),
+                                value: chooseValue,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    chooseValue = (newValue).toString();
+                                  });
+                                },
+                                items: listItem.map((valueItem) {
+                                  return DropdownMenuItem(
+                                    value: valueItem,
+                                    child: Text(valueItem),
+                                  );
+                                }).toList())
+                          ],
+                        )),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Card(
+                      elevation: 6,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            label: Text("HEIGHT (in cm)"),
+                            border: OutlineInputBorder()),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Card(
+                      elevation: 6,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            label: Text("WEIGHT (in kg)"),
+                            border: OutlineInputBorder()),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Card(
+                        elevation: 6,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Clestrol"),
+                            DropdownButton(
+                                hint: Text("Select"),
+                                value: chooseVaB,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    chooseVaB = (newValue).toString();
+                                  });
+                                },
+                                items: listItemA.map((valueItem) {
+                                  return DropdownMenuItem(
+                                    value: valueItem,
+                                    child: Text(valueItem),
+                                  );
+                                }).toList())
+                          ],
+                        )),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Card(
+                        elevation: 6,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Gulogose"),
+                            DropdownButton(
+                                hint: Text("Select"),
+                                value: chooseVaC,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    chooseVaC = (newValue).toString();
+                                  });
+                                },
+                                items: listItemA.map((valueItem) {
+                                  return DropdownMenuItem(
+                                    value: valueItem,
+                                    child: Text(valueItem),
+                                  );
+                                }).toList())
+                          ],
+                        )),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Card(
+                      elevation: 6,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            label: Text("Systolic Blood pressure"),
+                            border: OutlineInputBorder()),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Card(
+                      elevation: 6,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            label: Text("Diastolic Blood Pressure"),
+                            border: OutlineInputBorder()),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Card(
+                        elevation: 6,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Smoke"),
+                            DropdownButton(
+                                hint: Text("Select"),
+                                value: chooseVaD,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    chooseVaD = (newValue).toString();
+                                  });
+                                },
+                                items: listItemB.map((valueItem) {
+                                  return DropdownMenuItem(
+                                    value: valueItem,
+                                    child: Text(valueItem),
+                                  );
+                                }).toList())
+                          ],
+                        )),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Card(
+                        elevation: 6,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Alcholo"),
+                            DropdownButton(
+                                hint: Text("Select"),
+                                value: chooseVaE,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    chooseVaE = (newValue).toString();
+                                  });
+                                },
+                                items: listItemB.map((valueItem) {
+                                  return DropdownMenuItem(
+                                    value: valueItem,
+                                    child: Text(valueItem),
+                                  );
+                                }).toList())
+                          ],
+                        )),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text("Submitted"),
+                    )
+                  ],
+                )
+              ]),
         ),
       ),
     );
